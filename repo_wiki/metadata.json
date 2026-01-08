@@ -1,0 +1,25 @@
+{
+    "generation_info": {
+        "timestamp": "2026-01-08T00:26:01.076281",
+        "main_model": "qwen3-coder-plus",
+        "generator_version": "1.0.1",
+        "repo_path": "/nfs/site/disks/ssm_lwang85_002/AI/repo-wiki/CodeWiki",
+        "commit_id": null
+    },
+    "statistics": {
+        "total_components": 180,
+        "leaf_nodes": 51,
+        "max_depth": 2
+    },
+    "files_generated": [
+        "overview.md",
+        "module_tree.json",
+        "first_module_tree.json",
+        "dependency_analyzer.md",
+        "documentation_generator.md",
+        "agent_orchestrator.md",
+        "agent_tools.md",
+        "config.md",
+        "utils.md"
+    ]
+}
