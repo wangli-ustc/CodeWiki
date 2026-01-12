@@ -253,8 +253,6 @@ class DocumentationGenerator:
             components, leaf_nodes = self.graph_builder.build_dependency_graph()
 
             logger.debug(f"Found {len(leaf_nodes)} leaf nodes")
-            # logger.debug(f"Leaf nodes:\n{'\n'.join(sorted(leaf_nodes)[:200])}")
-            # exit()
             
             # Cluster modules
             working_dir = os.path.abspath(self.config.docs_dir)
