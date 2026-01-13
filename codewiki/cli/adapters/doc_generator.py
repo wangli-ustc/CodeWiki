@@ -185,19 +185,6 @@ class CLIDocumentationGenerator:
             components, leaf_nodes = doc_generator.graph_builder.build_dependency_graph()
             self.job.statistics.total_files_analyzed = len(components)
             self.job.statistics.leaf_nodes = len(leaf_nodes)
-            if self.verbose:            
-                # Debug: dump components and leaf_nodes
-                working_dir = str(self.output_dir.absolute())
-                debug_dir = os.path.join(working_dir, "debug")
-                file_manager.ensure_directory(debug_dir)
-                file_manager.save_json(
-                    {k: v.to_dict() for k, v in components.items()},
-                    os.path.join(debug_dir, "components.json")
-                )
-                file_manager.save_json(
-                    {"leaf_nodes": leaf_nodes, "count": len(leaf_nodes)},
-                    os.path.join(debug_dir, "leaf_nodes.json")
-                )
             
             if self.verbose:
                 self.progress_tracker.update_stage(1.0, f"Found {len(leaf_nodes)} leaf nodes")
@@ -221,7 +208,19 @@ class CLIDocumentationGenerator:
         first_module_tree_path = os.path.join(working_dir, FIRST_MODULE_TREE_FILENAME)
         module_tree_path = os.path.join(working_dir, MODULE_TREE_FILENAME)
         
-                    
+        if self.verbose:
+            # Debug: dump components and leaf_nodes
+            debug_dir = os.path.join(working_dir, "debug")
+            file_manager.ensure_directory(debug_dir)
+            file_manager.save_json(
+                {k: v.model_dump(mode='json') for k, v in components.items()},
+                os.path.join(debug_dir, "components.json")
+            )
+            file_manager.save_json(
+                {"leaf_nodes": leaf_nodes, "count": len(leaf_nodes)},
+                os.path.join(debug_dir, "leaf_nodes.json")
+            )
+
         # Debug: dump components and leaf_nodes
         debug_dir = os.path.join(working_dir, "debug")
         file_manager.ensure_directory(debug_dir)
